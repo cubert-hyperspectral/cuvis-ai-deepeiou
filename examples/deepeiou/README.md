@@ -77,8 +77,9 @@ track_out = tracker.forward(
 )
 ```
 
-See `examples/object_tracking/deepeiou/yolo_deepeiou_hsi.py` for the full
-CU3S pipeline with `--with-reid` / `--no-reid` flags.
+See `examples/object_tracking/deepeiou/yolo_deepeiou_reid_hsi.py` for the full
+CU3S pipeline. Use `--no-reid` for EIoU-only tracking or `--with-reid` to
+enable appearance embeddings.
 
 ### Option B: torchreid FeatureExtractor (RGB — future Phase 2)
 
@@ -108,6 +109,27 @@ The offline JSON example (`deepeiou_from_detection_json.py`) has **no embedding
 source** — COCO detection JSON does not store per-detection embeddings. The
 `--with-reid` flag exists but will have no effect unless the script is extended
 to load embeddings from a separate file.
+
+### Offline JSON + Video ReID (ready now)
+
+Use `deepeiou_from_detection_json_with_reid.py` to read detections from JSON,
+extract ReID embeddings from a matching RGB video, and run DeepEIoU with
+appearance fusion:
+
+```powershell
+uv run python examples/deepeiou/deepeiou_from_detection_json_with_reid.py `
+    --input-json "D:/data/XMR_notarget_Busstation/20260226/tracker/bytetrack_rgb_test/detection_results.json" `
+    --video-path "D:/data/XMR_notarget_Busstation/20260226/Auto_013+01-trustimulus.mp4" `
+    --output-json "D:/experiments/deepeiou/reid/tracking_results.json" `
+    --with-reid `
+    --reid-weights "D:/models/osnet_x1_0_imagenet.pth.tar" `
+    --backbone osnet `
+    --save-embeddings-dir "D:/experiments/deepeiou/reid/features"
+```
+
+Notes:
+- Frame mapping is `video_frame = image_id + --frame-id-offset` (default offset `0`).
+- Use `--no-reid` to run the same script in EIoU-only mode.
 
 ## Examples
 
