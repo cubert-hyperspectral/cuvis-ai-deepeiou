@@ -31,7 +31,9 @@ class BBoxFeatureExtractor(Node):
 
     MODEL_NAME: str  # e.g. "osnet_x1_0"
     FEATURE_DIM: int  # e.g. 512
-    HF_WEIGHTS: ClassVar[dict[str, str]] = {}  # subclasses override: {"repo_id": ..., "filename": ...}
+    HF_WEIGHTS: ClassVar[
+        dict[str, str]
+    ] = {}  # subclasses override: {"repo_id": ..., "filename": ...}
 
     INPUT_SPECS = {
         "crops": PortSpec(
@@ -119,7 +121,9 @@ class BBoxFeatureExtractor(Node):
         if n == 0:
             return {
                 "embeddings": torch.zeros(
-                    1, 0, self.FEATURE_DIM,
+                    1,
+                    0,
+                    self.FEATURE_DIM,
                     dtype=torch.float32,
                     device=crops.device,
                 ),

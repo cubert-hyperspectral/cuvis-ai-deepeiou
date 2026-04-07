@@ -217,8 +217,8 @@ class DeepEIoUTrack(Node):
         device = bboxes.device
         N = bboxes.shape[1]
 
-        bboxes_np = bboxes[0].cpu().numpy()      # [N, 4]
-        confs_np = confidences[0].cpu().numpy()   # [N]
+        bboxes_np = bboxes[0].cpu().numpy()  # [N, 4]
+        confs_np = confidences[0].cpu().numpy()  # [N]
 
         if N == 0:
             output_results = np.empty((0, 5), dtype=np.float32)
@@ -259,8 +259,8 @@ class DeepEIoUTrack(Node):
         )
 
         return {
-            "bboxes": bboxes,                                               # passthrough
+            "bboxes": bboxes,  # passthrough
             "track_ids": torch.from_numpy(track_ids_np).unsqueeze(0).to(device),
-            "confidences": confidences,                                     # passthrough
-            "category_ids": category_ids,                                   # passthrough
+            "confidences": confidences,  # passthrough
+            "category_ids": category_ids,  # passthrough
         }

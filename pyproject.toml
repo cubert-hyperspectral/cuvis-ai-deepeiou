@@ -8,8 +8,14 @@ dynamic = ["version"]
 description = "DeepEIoU multi-object tracker with EIoU and deep feature ReID, cuvis.ai-compatible plugin."
 readme = "README.md"
 requires-python = ">=3.11,<3.12"
+license = "LicenseRef-Cubert-DeepEIoU-Permission"
+license-files = ["LICENSE", "cuvis_ai_deepeiou/reid/LICENSE"]
+keywords = ["cuvis-ai", "deepeiou", "tracking", "reid", "plugin"]
 authors = [
     { name = "Hsiang-Wei Huang et al." },
+    { name = "Cubert GmbH, Ulm, Germany", email = "cuvis.ai@cubert-gmbh.com" },
+]
+maintainers = [
     { name = "Cubert GmbH, Ulm, Germany", email = "cuvis.ai@cubert-gmbh.com" },
 ]
 classifiers = [
@@ -44,8 +50,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://www.cubert-hyperspectral.com/"
+Homepage = "https://github.com/cubert-hyperspectral/cuvis-ai-deepeiou"
 Repository = "https://github.com/cubert-hyperspectral/cuvis-ai-deepeiou"
+Documentation = "https://github.com/cubert-hyperspectral/cuvis-ai-deepeiou#readme"
+Changelog = "https://github.com/cubert-hyperspectral/cuvis-ai-deepeiou/releases"
+Issues = "https://github.com/cubert-hyperspectral/cuvis-ai-deepeiou/issues"
 
 [tool.setuptools.packages.find]
 include = ["cuvis_ai_deepeiou*", "deep_eiou_tracker*"]
@@ -86,12 +95,9 @@ version_scheme = "post-release"
 local_scheme = "node-and-date"
 
 [tool.pytest.ini_options]
-addopts = "-v -ra --showlocals --strict-markers --tb=short --color=yes"
+addopts = "-v -ra --showlocals --strict-markers --tb=short --color=yes --import-mode=importlib"
 testpaths = ["tests"]
 norecursedirs = ".* build dist CVS *.egg venv .venv .git deep_eiou_tracker"
-# importlib mode prevents pytest from adding test dirs to sys.path,
-# avoiding tests/cuvis_ai_deepeiou/ shadowing the real package.
-importmode = "importlib"
 
 [tool.interrogate]
 ignore-init-method = true

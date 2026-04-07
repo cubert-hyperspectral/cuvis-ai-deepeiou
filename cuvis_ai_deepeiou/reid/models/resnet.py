@@ -128,9 +128,7 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     @staticmethod
-    def _construct_fc_layer(
-        fc_dims: list[int] | None, input_dim: int
-    ) -> nn.Sequential | None:
+    def _construct_fc_layer(fc_dims: list[int] | None, input_dim: int) -> nn.Sequential | None:
         if fc_dims is None or len(fc_dims) == 0:
             return None
         layers: list[nn.Module] = []

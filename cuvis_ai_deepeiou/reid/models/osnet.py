@@ -16,10 +16,10 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 
-
 # ---------------------------------------------------------------------------
 # Building blocks
 # ---------------------------------------------------------------------------
+
 
 class ConvLayer(nn.Module):
     """Conv + BN + ReLU."""
@@ -35,8 +35,13 @@ class ConvLayer(nn.Module):
     ) -> None:
         super().__init__()
         self.conv = nn.Conv2d(
-            in_channels, out_channels, kernel_size,
-            stride=stride, padding=padding, bias=False, groups=groups,
+            in_channels,
+            out_channels,
+            kernel_size,
+            stride=stride,
+            padding=padding,
+            bias=False,
+            groups=groups,
         )
         self.bn = nn.BatchNorm2d(out_channels)
         self.relu = nn.ReLU(inplace=True)
@@ -48,7 +53,9 @@ class ConvLayer(nn.Module):
 class Conv1x1(nn.Module):
     """1×1 conv + BN + optional ReLU."""
 
-    def __init__(self, in_channels: int, out_channels: int, stride: int = 1, relu: bool = True) -> None:
+    def __init__(
+        self, in_channels: int, out_channels: int, stride: int = 1, relu: bool = True
+    ) -> None:
         super().__init__()
         self.conv = nn.Conv2d(in_channels, out_channels, 1, stride=stride, padding=0, bias=False)
         self.bn = nn.BatchNorm2d(out_channels)
@@ -80,7 +87,12 @@ class LightConv3x3(nn.Module):
         super().__init__()
         self.conv1 = nn.Conv2d(in_channels, in_channels, 1, bias=False)
         self.conv2 = nn.Conv2d(
-            in_channels, out_channels, 3, padding=1, bias=False, groups=in_channels,
+            in_channels,
+            out_channels,
+            3,
+            padding=1,
+            bias=False,
+            groups=in_channels,
         )
         self.bn = nn.BatchNorm2d(out_channels)
         self.relu = nn.ReLU(inplace=True)
@@ -92,6 +104,7 @@ class LightConv3x3(nn.Module):
 # ---------------------------------------------------------------------------
 # Channel gate
 # ---------------------------------------------------------------------------
+
 
 class ChannelGate(nn.Module):
     """Channel-wise attention gate."""
@@ -136,10 +149,13 @@ class ChannelGate(nn.Module):
 # OSBlock — omni-scale feature learning block
 # ---------------------------------------------------------------------------
 
+
 class OSBlock(nn.Module):
     """Omni-scale feature learning block with 4 parallel streams."""
 
-    def __init__(self, in_channels: int, out_channels: int, reduction: int = 4, T: int = 4, **kwargs: Any) -> None:
+    def __init__(
+        self, in_channels: int, out_channels: int, reduction: int = 4, T: int = 4, **kwargs: Any
+    ) -> None:
         super().__init__()
         mid_channels = out_channels // reduction
 
@@ -181,6 +197,7 @@ class OSBlock(nn.Module):
 # ---------------------------------------------------------------------------
 # OSNet backbone
 # ---------------------------------------------------------------------------
+
 
 class OSNet(nn.Module):
     """Omni-Scale Network.
@@ -226,10 +243,14 @@ class OSNet(nn.Module):
         self.conv2 = self._make_layer(blocks[0], layers[0], channels[0], channels[1])
         self.pool2 = nn.Sequential(Conv1x1(channels[1], channels[1]), nn.AvgPool2d(2, stride=2))
 
-        self.conv3 = self._make_layer(blocks[min(1, num_blocks - 1)], layers[1], channels[1], channels[2])
+        self.conv3 = self._make_layer(
+            blocks[min(1, num_blocks - 1)], layers[1], channels[1], channels[2]
+        )
         self.pool3 = nn.Sequential(Conv1x1(channels[2], channels[2]), nn.AvgPool2d(2, stride=2))
 
-        self.conv4 = self._make_layer(blocks[min(2, num_blocks - 1)], layers[2], channels[2], channels[3])
+        self.conv4 = self._make_layer(
+            blocks[min(2, num_blocks - 1)], layers[2], channels[2], channels[3]
+        )
 
         self.conv5 = Conv1x1(channels[3], channels[3])
         self.global_avgpool = nn.AdaptiveAvgPool2d(1)
@@ -241,7 +262,9 @@ class OSNet(nn.Module):
         self._init_params()
 
     @staticmethod
-    def _make_layer(block: type[nn.Module], num_blocks: int, in_channels: int, out_channels: int) -> nn.Sequential:
+    def _make_layer(
+        block: type[nn.Module], num_blocks: int, in_channels: int, out_channels: int
+    ) -> nn.Sequential:
         layers = [block(in_channels, out_channels)]
         for _ in range(1, num_blocks):
             layers.append(block(out_channels, out_channels))
@@ -305,6 +328,7 @@ class OSNet(nn.Module):
 # ---------------------------------------------------------------------------
 # Factory
 # ---------------------------------------------------------------------------
+
 
 def osnet_x1_0(num_classes: int = 1, loss: str = "softmax", **kwargs: Any) -> OSNet:
     """OSNet x1.0 (512-dim features)."""

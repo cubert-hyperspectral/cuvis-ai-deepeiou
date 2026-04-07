@@ -1,0 +1,23 @@
+cuvis-ai-deepeiou repository notice
+
+This repository contains:
+
+- `deep_eiou_tracker/`, adapted from Deep-EIoU by Hsiang-Wei Huang et al.
+- `cuvis_ai_deepeiou/reid/`, which includes vendored model code under the MIT
+  license in `cuvis_ai_deepeiou/reid/LICENSE`.
+- cuvis.ai-specific integration and packaging code by Cubert GmbH.
+
+Cubert GmbH distributes the Deep-EIoU-derived portions of this repository with
+permission from the original authors for inclusion in the cuvis.ai plugin
+collection. The corresponding permission record is retained by Cubert GmbH.
+
+Redistributions of this repository must preserve this notice and the MIT
+license notice for the vendored ReID files.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

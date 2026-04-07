@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import torch
 import torch.nn as nn
@@ -11,10 +11,10 @@ from cuvis_ai_deepeiou.node.bbox_feature_extractor import BBoxFeatureExtractor
 from cuvis_ai_deepeiou.node.osnet_extractor import OSNetExtractor
 from cuvis_ai_deepeiou.node.resnet_extractor import ResNetExtractor
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
 
 class _MockBackbone(nn.Module):
     """Fake backbone that returns random features of the right dim."""
@@ -29,7 +29,7 @@ class _MockBackbone(nn.Module):
         N = x.shape[0]
         return torch.randn(N, self.feature_dim)
 
-    def eval(self) -> "_MockBackbone":
+    def eval(self) -> _MockBackbone:
         return super().eval()
 
 
@@ -60,6 +60,7 @@ def _make_extractor(cls: type[BBoxFeatureExtractor]) -> BBoxFeatureExtractor:
 # ---------------------------------------------------------------------------
 # Tests
 # ---------------------------------------------------------------------------
+
 
 def test_osnet_extractor_port_specs() -> None:
     """INPUT/OUTPUT_SPECS shapes and dtypes for OSNet."""

@@ -57,6 +57,8 @@ def load_pretrained_weights(model: nn.Module, weight_path: str) -> None:
             stacklevel=2,
         )
     else:
-        logger.info("Loaded pretrained weights from '{}' ({} layers)", weight_path, len(matched_layers))
+        logger.info(
+            "Loaded pretrained weights from '{}' ({} layers)", weight_path, len(matched_layers)
+        )
         if discarded_layers:
             logger.debug("Discarded {} layers with unmatched keys/sizes", len(discarded_layers))
