@@ -53,7 +53,11 @@ def _patch_build_and_load(feature_dim: int):
 def _make_extractor(cls: type[BBoxFeatureExtractor]) -> BBoxFeatureExtractor:
     """Instantiate an extractor with mocked model loading."""
     p1, p2 = _patch_build_and_load(cls.FEATURE_DIM)
-    with p1, p2:
+    with (
+        p1,
+        p2,
+        patch.object(cls, "_resolve_weights", return_value="/fake/weights.pth.tar"),
+    ):
         return cls(model_path="/fake/weights.pth.tar", name="test_extractor")
 
 
