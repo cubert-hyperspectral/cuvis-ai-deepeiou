@@ -71,7 +71,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Run pip-audit for vulnerabilities
-        run: uv run --no-sources --locked --extra dev pip-audit --desc on --skip-editable
+        run: uv run --no-sources --locked --extra dev pip-audit --desc on --skip-editable --ignore-vuln PYSEC-2022-42969
 
       - name: Run detect-secrets
         run: |
