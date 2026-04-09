@@ -1,73 +1,51 @@
-# cuvis-ai-deepeiou
+![image](https://raw.githubusercontent.com/cubert-hyperspectral/cuvis.sdk/main/branding/logo/banner.png)
 
-`cuvis-ai-deepeiou` packages the cuvis.ai plugin nodes that wrap the DeepEIoU
-multi-object tracker and its optional ReID feature extractors for use inside
-`NodeRegistry` pipelines.
+# CUVIS.AI DeepEIoU
 
-The repository exposes three plugin-facing node classes:
+This repository provides a port of the DeepEIoU multi-object tracker and its ReID feature extractors as a cuvis.ai plugin. It is maintained by Cubert GmbH as part of the cuvis.ai ecosystem.
 
-- `cuvis_ai_deepeiou.node.DeepEIoUTrack`
-- `cuvis_ai_deepeiou.node.OSNetExtractor`
-- `cuvis_ai_deepeiou.node.ResNetExtractor`
+## Platform
 
-## Release Manifest
+cuvis.ai is split across multiple repositories:
 
-Use the released plugin from `cuvis-ai-tracking` with a selective manifest:
+| Repository | Role |
+|---|---|
+| [cuvis-ai-core](https://github.com/cubert-hyperspectral/cuvis-ai-core) | Framework — base `Node` class, pipeline orchestration, services, and plugin system |
+| [cuvis-ai-schemas](https://github.com/cubert-hyperspectral/cuvis-ai-schemas) | Shared schema definitions and generated types |
+| [cuvis-ai](https://github.com/cubert-hyperspectral/cuvis-ai) | Node catalog and end-user pipeline examples |
+| **cuvis-ai-deepeiou** (this repo) | DeepEIoU plugin — cuvis.ai nodes for multi-object tracking with optional ReID |
 
-```yaml
-plugins:
-  deepeiou:
-    repo: "https://github.com/cubert-hyperspectral/cuvis-ai-deepeiou.git"
-    tag: "v0.1.0"
-    provides:
-      - cuvis_ai_deepeiou.node.DeepEIoUTrack
-      - cuvis_ai_deepeiou.node.OSNetExtractor
-      - cuvis_ai_deepeiou.node.ResNetExtractor
+## Nodes
+
+| Node | Description |
+|---|---|
+| `DeepEIoUTrack` | Multi-object tracker using EIoU association with optional deep feature ReID |
+| `OSNetExtractor` | OSNet-based appearance feature extractor for ReID |
+| `ResNetExtractor` | ResNet-based appearance feature extractor for ReID |
+
+## Quick Start
+
+For local development in this repository:
+
+```bash
+git clone https://github.com/cubert-hyperspectral/cuvis-ai-deepeiou.git
+cd cuvis-ai-deepeiou
+uv sync --all-extras
 ```
 
-## Local Development Manifest
+For cuvis.ai usage examples, see the DeepEIoU tracking pipelines in [cuvis-ai](https://github.com/cubert-hyperspectral/cuvis-ai/tree/main/examples/object_tracking/deepeiou).
 
-Use a local checkout while iterating on the plugin:
+For the original upstream Deep-EIoU repository, research background, and technical details, see [README_TECHNICAL.md](README_TECHNICAL.md).
 
-```yaml
-plugins:
-  deepeiou:
-    path: "../../../../cuvis-ai-deepeiou/deepeiou-init"
-    provides:
-      - cuvis_ai_deepeiou.node.DeepEIoUTrack
-      - cuvis_ai_deepeiou.node.OSNetExtractor
-      - cuvis_ai_deepeiou.node.ResNetExtractor
-```
+## Links
 
-## Run Through cuvis-ai-tracking
+- **Documentation:** https://docs.cuvis.ai/latest/
+- **Website:** https://www.cubert-hyperspectral.com/
+- **Support:** http://support.cubert-hyperspectral.com/
+- **Issues:** https://github.com/cubert-hyperspectral/cuvis-ai-deepeiou/issues
+- **Changelog:** [CHANGELOG.md](CHANGELOG.md)
+- **Technical README:** [README_TECHNICAL.md](README_TECHNICAL.md)
 
-From `cuvis-ai-tracking`, this plugin is exercised by the YOLO + DeepEIoU
-tracking example:
+---
 
-```powershell
-uv run python examples/object_tracking/deepeiou/yolo_deepeiou_reid_hsi.py `
-  --video-path "D:\experiments\20260331\video_creation\tristimulus\XMR_50mm_ObjectTracking\20260331\12_39_03\Auto_002.mp4" `
-  --no-reid `
-  --output-dir "D:\experiments\20260407\deepeiou" `
-  --out-basename "v0_1_0_smoke" `
-  --end-frame 60
-```
-
-## Local Validation
-
-```powershell
-uv run --no-sources --extra dev pytest tests/cuvis_ai_deepeiou -v
-uv run --no-sources --extra dev ruff format --check cuvis_ai_deepeiou tests/cuvis_ai_deepeiou
-uv run --no-sources --extra dev ruff check cuvis_ai_deepeiou tests/cuvis_ai_deepeiou
-uv build --no-sources
-uv run --no-sources --with twine twine check dist/*
-```
-
-## Notes
-
-- The tracker implementation is derived from Deep-EIoU by Hsiang-Wei Huang et
-  al. Cubert GmbH distributes the plugin with permission from the original
-  authors.
-- `cuvis_ai_deepeiou/reid/` vendors ReID model code under the MIT license in
-  `cuvis_ai_deepeiou/reid/LICENSE`.
-- The repository-level distribution notice is in [LICENSE](LICENSE).
+See [LICENSE](LICENSE) for repository licensing details.
