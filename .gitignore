@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+.pytest_cache/
+
+# Compiled extensions
+*.so
+*.o
+*.c
+*.cpp
+!Deep-EIoU/**/*.c
+!Deep-EIoU/**/*.cpp
+
+# Virtual environments
+.env
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+.history/
+*.swp
+*.swo
+*~
+
+# Media
+*.mp4
+*.avi
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Checkpoints / models
+*.pt
+*.pth
+*.onnx
+checkpoints/
