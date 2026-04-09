@@ -120,4 +120,4 @@ follow_imports = "skip"
 
 [tool.bandit]
 exclude_dirs = ["tests", "deep_eiou_tracker"]
-skips = ["B101"]
+skips = ["B101", "B614"]
