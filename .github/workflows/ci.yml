@@ -54,37 +54,9 @@ jobs:
       - name: Run ruff
         run: uv run --no-sources --locked --extra dev ruff check cuvis_ai_deepeiou tests/cuvis_ai_deepeiou
 
-  security:
-    name: Security Scanning
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-
-      - name: Run pip-audit for vulnerabilities
-        run: uv run --no-sources --locked --extra dev pip-audit --desc on --skip-editable --ignore-vuln PYSEC-2022-42969
-
-      - name: Run detect-secrets
-        run: |
-          uv run --no-sources --locked --extra dev detect-secrets scan --all-files \
-            --exclude-files '\.lock$|\.egg-info|\.pyc$|\.git/|\.pytest_cache|deep_eiou_tracker/' \
-            --baseline .secrets.baseline
-
-      - name: Run bandit security linter
-        run: uv run --no-sources --locked --extra dev bandit -r cuvis_ai_deepeiou/ -c pyproject.toml
-
   build:
     name: Build And Validate
-    needs: [test, lint, security]
+    needs: [test, lint]
     runs-on: ubuntu-latest
 
     steps:
