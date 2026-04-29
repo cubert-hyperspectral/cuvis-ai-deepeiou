@@ -314,6 +314,7 @@ name = "cuvis-ai-deepeiou"
 source = { editable = "." }
 dependencies = [
     { name = "cuvis-ai-core" },
+    { name = "cuvis-ai-schemas" },
     { name = "huggingface-hub" },
     { name = "lap" },
     { name = "scipy" },
@@ -338,6 +339,7 @@ fast = [
 requires-dist = [
     { name = "bandit", extras = ["toml"], marker = "extra == 'dev'" },
     { name = "cuvis-ai-core", specifier = ">=0.1.3" },
+    { name = "cuvis-ai-schemas", specifier = ">=0.4.0" },
     { name = "cython-bbox", marker = "extra == 'fast'", specifier = ">=0.1.5" },
     { name = "detect-secrets", marker = "extra == 'dev'" },
     { name = "huggingface-hub", specifier = ">=0.20.0" },
@@ -354,15 +356,15 @@ provides-extras = ["fast", "dev"]
 
 [[package]]
 name = "cuvis-ai-schemas"
-version = "0.2.0"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/53/bd/23f136871be608cb912fc73f1171c5b3aa513314929b9b53aa4a3da9bce4/cuvis_ai_schemas-0.2.0.tar.gz", hash = "sha256:3435c37d55ce7ffbb75961883f1ac65d626a80c4c0747cbd1c6bff308dda4f5e", size = 125390, upload-time = "2026-02-27T13:56:45.536Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/16/0e5ce1a9e968cb0bf755b52af436b2fbd852b519918ac972fb225325456c/cuvis_ai_schemas-0.4.0.tar.gz", hash = "sha256:3b507eb22b520725fa03c1038e726c229f613184b3cf220d12b6d69adab9747a", size = 141470, upload-time = "2026-04-29T10:42:42.37Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e3/cd/94cb14a9381b98a916b85fa24c95ddc21c3aebdef852e15aa9537730adfe/cuvis_ai_schemas-0.2.0-py3-none-any.whl", hash = "sha256:6e06e414e0d7fba9cf4d182bf78b194fcbb7befde000606d68616f68cc79431c", size = 45417, upload-time = "2026-02-27T13:56:43.941Z" },
+    { url = "https://files.pythonhosted.org/packages/21/7b/7d3811c009ce326959bb6a08579628d0a3fd6dd3557e96c873dc54cef8fd/cuvis_ai_schemas-0.4.0-py3-none-any.whl", hash = "sha256:4ee89ed8e253c1302e224da5edca28078bb8b5306ed1408ecfb2b75ad9072eba", size = 60150, upload-time = "2026-04-29T10:42:40.665Z" },
 ]
 
 [[package]]
