@@ -10,6 +10,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from cuvis_ai_core.node import Node
+from cuvis_ai_schemas.enums import NodeCategory, NodeTag
 from cuvis_ai_schemas.pipeline import PortSpec
 from loguru import logger
 
@@ -28,6 +29,17 @@ class BBoxFeatureExtractor(Node):
     model_path : str
         Path to a ``.pth.tar`` weights file for the TorchReID backbone.
     """
+
+    _category = NodeCategory.MODEL
+    _tags = frozenset({
+        NodeTag.RGB,
+        NodeTag.IMAGE,
+        NodeTag.EMBEDDING,
+        NodeTag.INFERENCE,
+        NodeTag.LEARNABLE,
+        NodeTag.BATCHED,
+        NodeTag.TORCH,
+    })
 
     MODEL_NAME: str  # e.g. "osnet_x1_0"
     FEATURE_DIM: int  # e.g. 512

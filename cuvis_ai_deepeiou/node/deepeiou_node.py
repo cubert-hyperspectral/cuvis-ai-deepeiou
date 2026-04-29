@@ -8,6 +8,7 @@ from typing import Any
 import numpy as np
 import torch
 from cuvis_ai_core.node import Node
+from cuvis_ai_schemas.enums import NodeCategory, NodeTag
 from cuvis_ai_schemas.execution import Context
 from cuvis_ai_schemas.pipeline import PortSpec
 from loguru import logger
@@ -47,6 +48,15 @@ class DeepEIoUTrack(Node):
     appearance_thresh : float
         Embedding distance above which appearance match is rejected (default 0.25).
     """
+
+    _category = NodeCategory.TRANSFORM
+    _tags = frozenset({
+        NodeTag.BBOX,
+        NodeTag.TRACKING,
+        NodeTag.INFERENCE,
+        NodeTag.STATEFUL,
+        NodeTag.TORCH,
+    })
 
     INPUT_SPECS = {
         "bboxes": PortSpec(
