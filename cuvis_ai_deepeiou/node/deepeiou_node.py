@@ -50,13 +50,15 @@ class DeepEIoUTrack(Node):
     """
 
     _category = NodeCategory.TRANSFORM
-    _tags = frozenset({
-        NodeTag.BBOX,
-        NodeTag.TRACKING,
-        NodeTag.INFERENCE,
-        NodeTag.STATEFUL,
-        NodeTag.TORCH,
-    })
+    _tags = frozenset(
+        {
+            NodeTag.BBOX,
+            NodeTag.TRACKING,
+            NodeTag.INFERENCE,
+            NodeTag.STATEFUL,
+            NodeTag.TORCH,
+        }
+    )
 
     INPUT_SPECS = {
         "bboxes": PortSpec(
