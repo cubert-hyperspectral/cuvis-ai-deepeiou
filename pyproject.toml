@@ -29,6 +29,7 @@ classifiers = [
 dependencies = [
     # Core framework (provides torch, numpy, Node base class, plugin system)
     "cuvis-ai-core>=0.1.3",
+    "cuvis-ai-schemas>=0.4.0",
     # DeepEIoU runtime dependencies
     "scipy>=1.10.0",
     "lap>=0.4.0",
