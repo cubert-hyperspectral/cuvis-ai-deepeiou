@@ -376,7 +376,7 @@ fast = [
 [package.metadata]
 requires-dist = [
     { name = "bandit", extras = ["toml"], marker = "extra == 'dev'" },
-    { name = "cuvis-ai-core", specifier = ">=0.7.0" },
+    { name = "cuvis-ai-core", specifier = ">=0.7.1" },
     { name = "cuvis-ai-schemas", specifier = ">=0.5.2" },
     { name = "cython-bbox", marker = "extra == 'fast'", specifier = ">=0.1.5" },
     { name = "detect-secrets", marker = "extra == 'dev'" },

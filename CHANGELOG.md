@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.1.2 - 2026-06-10
+
+- Require `cuvis-ai-core>=0.7.1` and `cuvis-ai-schemas>=0.5.2` (inherits the upstream security floors transitively).
+- Updated `examples/deepeiou/plugins.yaml` `provides` to the `CatalogNodeEntry` `class_name:` form required by cuvis-ai-schemas 0.5.2.
+- Added the `cuvis_ai_compat.yml` dependency-compatibility workflow (audits the plugin's deps against the cuvis-ai-core lock).
+- Removed the PyPI/TestPyPI release workflow; the plugin is distributed via git tags referenced from cuvis-ai plugin manifests.
+- Stripped `torch` / `torchvision` wheel hashes from `uv.lock`.
+
 ## 0.1.1 - 2026-04-29
 
 - Annotated `BBoxFeatureExtractor` (abstract base), `OSNetExtractor`, and `ResNetExtractor` with `_category = NodeCategory.MODEL` and `_tags = {RGB, IMAGE, EMBEDDING, INFERENCE, LEARNABLE, BATCHED, TORCH}`; `DeepEIoUTrack` with `_category = NodeCategory.TRANSFORM` and `_tags = {BBOX, TRACKING, INFERENCE, STATEFUL, TORCH}`.
