@@ -4,10 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-## 0.2.0 - 2026-06-19
+## 0.2.0 - 2026-06-23
 
 - Migrated the example plugin manifest (`examples/deepeiou/plugins.yaml`) to the bare `capabilities:` shape required by cuvis-ai-schemas 0.6.0.
-- Require `cuvis-ai-core>=0.8.0` and `cuvis-ai-schemas>=0.6.0`, adopting the released framework versions.
+- Require `cuvis-ai-core>=0.10.0` and `cuvis-ai-schemas>=0.7.0`, adopting the released framework versions.
 
 ## 0.1.2 - 2026-06-10
 
