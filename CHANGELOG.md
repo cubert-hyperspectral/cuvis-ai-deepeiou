@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+- CI: add a detect-secrets secret-scan job (git-tracked files only).
+
 ## 0.2.0 - 2026-06-23
 
 - Migrated the example plugin manifest (`examples/deepeiou/plugins.yaml`) to the bare `capabilities:` shape required by cuvis-ai-schemas 0.6.0.
