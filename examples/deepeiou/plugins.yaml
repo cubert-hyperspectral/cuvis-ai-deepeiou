@@ -1,8 +1,7 @@
 # Plugin manifest for DeepEIoU examples.
 # Used by examples that need the DeepEIoU tracker node.
 
-plugins:
-  deepeiou:
-    path: "../.."
-    provides:
-      - class_name: cuvis_ai_deepeiou.node.DeepEIoUTrack
+name: deepeiou
+path: "../.."
+capabilities:
+  - class_name: cuvis_ai_deepeiou.node.DeepEIoUTrack
