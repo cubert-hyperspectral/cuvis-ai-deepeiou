@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.2.2 - 2026-08-20
+
+- Removed the dead `[tool.uv.sources]` / `[[tool.uv.index]]` torch cu128 configuration: torch is not a direct dependency of this package and the committed lock resolves it from PyPI, so the tables had no effect anywhere (uv honours them only at the resolution root). Composed child environments receive the host-mirrored torch build from cuvis-ai-core >= 0.12.1.
+
 ## 0.2.1 - 2026-07-17
 
 - Raised the `cuvis-ai-schemas` floor to 0.8.0 and `cuvis-ai-core` to 0.11.0, adopting the released cuvis-ai-next framework versions.
