@@ -67,14 +67,12 @@ include = ["cuvis_ai_deepeiou*", "deep_eiou_tracker*"]
 # NOT included.
 
 [tool.uv.sources]
-torch = { index = "pytorch-cu128" }
-torchvision = { index = "pytorch-cu128" }
 # cuvis-ai-core = { path = "../cuvis-ai-core", editable = true }
 
-[[tool.uv.index]]
-name = "pytorch-cu128"
-url = "https://download.pytorch.org/whl/cu128"
-explicit = true
+# torch flavour in composed child environments is mirrored from the host by
+# cuvis-ai-core >= 0.12.1 (see the cuvis-ai plugin-development docs); this repo
+# does not pin a torch index: torch is not a direct dependency and the committed
+# lock resolves it from PyPI, so an index pin here would bind nothing.
 
 [tool.ruff]
 target-version = "py311"
